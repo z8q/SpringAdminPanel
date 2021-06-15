@@ -3,7 +3,6 @@ package com.z8q.springadminpanel.controller;
 import com.z8q.springadminpanel.domain.Role;
 import com.z8q.springadminpanel.domain.User;
 import com.z8q.springadminpanel.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
+
 public class UserController {
     @Autowired
     private UserService userService;
@@ -48,22 +48,19 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("profile")
+    @GetMapping("/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
 
         return "profile";
     }
 
-    @PostMapping("profile")
+    @PostMapping("/profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
-            @RequestParam String password,
-            @RequestParam String email
+            @RequestParam String password
     ) {
-        userService.updateProfile(user, password, email);
-
+        userService.updateProfile(user, password);
         return "redirect:/user/profile";
     }
 }

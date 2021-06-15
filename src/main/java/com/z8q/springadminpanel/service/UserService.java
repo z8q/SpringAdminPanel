@@ -3,15 +3,16 @@ package com.z8q.springadminpanel.service;
 import com.z8q.springadminpanel.domain.Role;
 import com.z8q.springadminpanel.domain.User;
 import com.z8q.springadminpanel.repos.UserRepo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,57 +20,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private MailSender mailSender;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
-    }
-
-    public boolean addUser(User user) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            return false;
-        }
-
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
-        user.setActivationCode(UUID.randomUUID().toString());
-
-        userRepo.save(user);
-
-        sendMessage(user);
-
-        return true;
-    }
-
-    private void sendMessage(User user) {
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://localhost:8080/activate/%s",
-                    user.getUsername(),
-                    user.getActivationCode()
-            );
-
-            mailSender.send(user.getEmail(), "Activation code", message);
-        }
-    }
-
-    public boolean activateUser(String code) {
-        User user = userRepo.findByActivationCode(code);
-
-        if (user == null) {
-            return false;
-        }
-
-        user.setActivationCode(null);
-
-        userRepo.save(user);
-
-        return true;
     }
 
     public List<User> findAll() {
@@ -94,28 +47,18 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
-    public void updateProfile(User user, String password, String email) {
-        String userEmail = user.getEmail();
-
-        boolean isEmailChanged = (email != null && !email.equals(userEmail)) ||
-                (userEmail != null && !userEmail.equals(email));
-
-        if (isEmailChanged) {
-            user.setEmail(email);
-
-            if (!StringUtils.isEmpty(email)) {
-                user.setActivationCode(UUID.randomUUID().toString());
-            }
+    public void updateProfile(User user, String password) {
+        String userPassword = user.getPassword();
+        boolean isPasswordChanged = (password != null && !password.equals(userPassword)) ||
+                (userPassword != null && !userPassword.equals(password));
+        if (isPasswordChanged) {
+            user.setPassword(password);
         }
-
+        /*
         if (!StringUtils.isEmpty(password)) {
             user.setPassword(password);
         }
-
+        */
         userRepo.save(user);
-
-        if (isEmailChanged) {
-            sendMessage(user);
-        }
     }
 }

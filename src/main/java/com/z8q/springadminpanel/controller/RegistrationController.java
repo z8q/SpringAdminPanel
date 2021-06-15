@@ -3,7 +3,6 @@ package com.z8q.springadminpanel.controller;
 import com.z8q.springadminpanel.domain.Role;
 import com.z8q.springadminpanel.domain.User;
 import com.z8q.springadminpanel.repos.UserRepo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
