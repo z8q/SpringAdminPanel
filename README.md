@@ -1,1 +1,1 @@
-# SpringAdminPanel
+changes in application.properties is needed
