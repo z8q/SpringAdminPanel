@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@PostAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
 public class MainController {
     @Autowired
     private MessageRepo messageRepo;
