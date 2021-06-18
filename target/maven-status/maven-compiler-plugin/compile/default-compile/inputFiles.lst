@@ -1,0 +1,12 @@
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/controller/RegistrationController.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/domain/Role.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/repos/MessageRepo.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/domain/User.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/repos/UserRepo.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/service/UserService.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/config/MvcConfig.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/config/WebSecurityConfig.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/Application.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/controller/MainController.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/domain/Message.java
+/Users/a19188687/SpringAdminPanel/src/main/java/com/z8q/springadminpanel/controller/UserController.java

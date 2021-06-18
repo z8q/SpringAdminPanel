@@ -1,0 +1,12 @@
+com/z8q/springadminpanel/domain/Message.class
+com/z8q/springadminpanel/domain/Role.class
+com/z8q/springadminpanel/repos/UserRepo.class
+com/z8q/springadminpanel/Application.class
+com/z8q/springadminpanel/controller/MainController.class
+com/z8q/springadminpanel/domain/User.class
+com/z8q/springadminpanel/controller/RegistrationController.class
+com/z8q/springadminpanel/repos/MessageRepo.class
+com/z8q/springadminpanel/config/WebSecurityConfig.class
+com/z8q/springadminpanel/controller/UserController.class
+com/z8q/springadminpanel/service/UserService.class
+com/z8q/springadminpanel/config/MvcConfig.class

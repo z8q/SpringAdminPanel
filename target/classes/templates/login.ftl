@@ -1,9 +1,11 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
 
-<@security.authorize  access="hasAnyAuthority('ADMIN') and hasAnyAuthority('USER')">
 <@c.page>
-${message?ifExists}
-<@l.login "/login" false/>
+    <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
+        <div class="alert alert-danger" role="alert">
+            ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}
+        </div>
+    </#if>
+    <@l.login "/login" false/>
 </@c.page>
-</@security.authorize>
