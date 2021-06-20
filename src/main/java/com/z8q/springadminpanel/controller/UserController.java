@@ -3,21 +3,26 @@ package com.z8q.springadminpanel.controller;
 import com.z8q.springadminpanel.domain.Role;
 import com.z8q.springadminpanel.domain.User;
 import com.z8q.springadminpanel.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
+
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -48,22 +53,21 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("profile")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @GetMapping("/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
 
         return "profile";
     }
 
-    @PostMapping("profile")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @PostMapping("/profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
-            @RequestParam String password,
-            @RequestParam String email
+            @RequestParam String password
     ) {
-        userService.updateProfile(user, password, email);
-
+        userService.updateProfile(user, password);
         return "redirect:/user/profile";
     }
 }
