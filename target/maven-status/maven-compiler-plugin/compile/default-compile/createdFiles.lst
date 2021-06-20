@@ -1,6 +1,7 @@
 com/z8q/springadminpanel/domain/Message.class
 com/z8q/springadminpanel/domain/Role.class
 com/z8q/springadminpanel/repos/UserRepo.class
+com/z8q/springadminpanel/controller/ControllerUtils.class
 com/z8q/springadminpanel/Application.class
 com/z8q/springadminpanel/controller/MainController.class
 com/z8q/springadminpanel/domain/User.class

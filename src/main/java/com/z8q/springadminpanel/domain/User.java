@@ -29,6 +29,9 @@ public class User implements UserDetails {
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
     }
+    public boolean isUser() {
+        return roles.contains(Role.USER);
+    }
 
     public Long getId() {
         return id;
@@ -49,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return isUser() || isAdmin();
     }
 
     @Override

@@ -9,10 +9,3 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
-
-
-// нужно добавить смену пароля
-
-
-// при первом запуске в пропертис вот эту строку spring.jpa.hibernate.ddl-auto=validate  сделать true
-// чтоб таблицы создались
