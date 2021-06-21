@@ -1,3 +1,4 @@
+<#include "security.ftl">
 <#macro login path isRegisterForm>
 <form action="${path}" method="post">
     <div class="form-group row">
@@ -25,6 +26,13 @@
                 </div>
             </#if>
         </div>
+
+        <#--<#if !user?? || !isAdmin>
+            <div class="invalid-feedback">
+                ${passwordError}
+            </div>
+        </#if>-->
+
     </div>
     <#if isRegisterForm>
         <div class="form-group row">
